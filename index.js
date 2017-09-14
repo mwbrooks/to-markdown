@@ -157,9 +157,9 @@ function process (node) {
   var replacement
   var content = getContent(node)
 
-  // Remove blank nodes
+  // Ignore blank nodes
   if (!isVoid(node) && !/A|TH|TD/.test(node.nodeName) && /^\s*$/i.test(content)) {
-    node._replacement = ''
+    node._replacement = content; // Preserve content instead of removing it (e.g. Hello<b> </b>World)
     return
   }
 
